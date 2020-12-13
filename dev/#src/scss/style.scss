@@ -1,0 +1,546 @@
+// Обнуление.
+@import "null";
+// Переменные
+@import "vars";
+
+// Общие параметры
+body {
+    min-width: $minwidth;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    line-height: 1.6rem;
+
+    &.lock {
+        overflow: hidden;
+    }
+}
+
+// <ОБОЛОЧКА>
+.wrapper {
+    min-height: 100%;
+}
+
+// <ВСЕ СТИЛИ>
+.sidebar {
+    z-index: $z-index-sidebar;
+    width: 100%;
+    max-width: 24rem;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $primary;
+
+    &__head {
+        padding: 4.1rem 0 0 4.1rem;
+        margin-bottom: 5.5rem;
+    }
+
+    &__body {}
+
+    .nav {
+        overflow-y: auto;
+
+        &__burger {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 10.4rem;
+            background: url(../img/icons/Union.svg);
+            width: 48px;
+            height: 106px;
+            cursor: pointer;
+
+            transition: 0.3s left linear;
+
+            span {
+                background-color: #000;
+                transition: 0.5s all ease;
+                top: 53px;
+                left: calc(50% - 13px);
+                position: absolute;
+                width: 26px;
+                height: 2px;
+
+                &:first-child {
+                    top: 46px;
+                }
+
+                &:last-child {
+                    top: 60px;
+                }
+            }
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            padding: 2.5rem 0 2.5rem 4.1rem;
+            border-left: 2px solid transparent;
+            transition: .2s border-left ease;
+
+            &:hover {
+                border-left: 2px solid $secondary;
+
+                .nav__link {
+                    color: $secondary;
+                }
+
+                .nav__icon svg path {
+                    stroke: $secondary;
+                }
+            }
+        }
+
+        &__link {
+            display: flex;
+            color: $black;
+            font-size: 1.6rem;
+            font-weight: 600;
+            transition: .2s color ease;
+        }
+
+        &__icon {
+            margin-right: 1.2rem;
+
+            svg path {
+                transition: .2s stroke ease;
+            }
+        }
+    }
+}
+
+
+.main {
+    margin-left: 24rem;
+    max-width: 2000px;
+
+    &__head {
+        padding: 4rem 4rem 2.6rem 4rem;
+        border-bottom: 1px solid rgba($black, .1);
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 2.8rem;
+        margin-bottom: 3.1rem;
+    }
+
+    &__body {
+        padding: 2.7rem 4rem 10rem 4rem;
+
+        background-color: #fafafa;
+
+        .coupons {
+
+            &__list {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            &__item {
+                min-width: 345px;
+                height: 161px;
+                position: relative;
+                padding: 1.6rem 2rem;
+                box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+                background-color: $white;
+                border-radius: 1rem;
+                border: 1px solid transparent;
+                cursor: pointer;
+                transition: .2s border ease;
+
+                &:hover {
+                    border: 1px solid $red;
+
+                    &::after {
+                        border-top: 1px solid $red;
+                        border-right: 1px solid $red;
+                    }
+                    &::before {
+                        border-left: 1px solid $red;
+                        border-bottom: 1px solid $red;
+                    }
+                }
+
+                &::after {
+                    content: '';
+                    z-index: $z-index-triangle;
+                    width: 15px;
+                    height: 15px;
+                    background-color: #fafafa;
+                    position: absolute;
+                    left: -7.6px;
+                    top: calc(50% - 8px);
+                    transform: rotate(45deg);
+                    border-top: 1px solid transparent;
+                    border-right: 1px solid transparent;
+                    transition: .2s border ease;
+                }
+                &::before {
+                    content: '';
+                    z-index: $z-index-triangle;
+                    width: 15px;
+                    height: 15px;
+                    background-color: #fafafa;
+                    position: absolute;
+                    right: -7.6px;
+                    top: calc(50% - 8px);
+                    transform: rotate(45deg);
+                    border-top: 1px solid transparent;
+                    border-right: 1px solid transparent;
+                    transition: .2s border ease;
+                }
+            }
+
+            &__title {
+                position: absolute;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 700;
+                font-size: 1.6rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1rem;
+            }
+
+            &__subtitle {
+                position: absolute;
+                top: 3.6rem;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 400;
+                font-size: 1.6rem;
+                color: rgba($black, .5);
+            }
+
+            &__action {
+                position: absolute;
+                bottom: 1.6rem;
+            }
+
+            &-action {
+                font-family: 'Roboto', sans-serif;
+
+                &__red-text {
+                    display: block;
+                    font-size: 3.6rem;
+                    color: $red;
+                    padding-bottom: 1rem;
+                }
+
+                &__text {
+                    display: block;
+                    letter-spacing: 0.4rem;
+                    text-transform: uppercase;
+                    font-size: 1.6rem;
+                    color: rgba($black, .5);
+                }
+            }
+
+            &__image {
+                border-radius: 0 1rem 1rem 0;
+                position: absolute;
+                height: 98%;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+// <ЭЛЕМЕНТЫ>
+.logo {
+    display: flex;
+    align-items: center;
+
+    &__icon {}
+
+    &__text {
+        margin-left: 1rem;
+        font-size: 1.6rem;
+        color: $black;
+    }
+}
+
+.search {
+
+    &__input {
+        width: 100%;
+        padding: 1.2rem 0 1.2rem 4.4rem;
+        border: 1px solid rgba(#333333, .2);
+        border-radius: 5rem;
+        background: url(../img/icons/search.svg) no-repeat center left 1.6rem;
+
+        transition: .2s border ease;
+
+        &:hover {
+            border: 1px solid rgba(#333333, .4);
+        }
+
+        &:focus {
+            border: 1px solid rgba(#333333, .8);
+        }
+    }
+}
+
+// </ЭЛЕМЕНТЫ>
+
+@media (max-width:1400px) {
+    .main {
+        &__body {
+            .coupons {
+                &__item {
+                    min-width: 280px;
+                    height: 144px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width:1024px) and (max-width:1240px) {
+    .main {
+        &__body {
+            .coupons {
+
+                &__list {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:1024px) {
+    .sidebar {
+        .nav {
+            &__burger {
+                display: block !important;
+
+                &_active {
+                    span {
+                        transform: scale(0);
+                    }
+
+                    span:first-child {
+                        transform: rotate(-45deg);
+                        top: 50px !important;
+                    }
+
+                    span:last-child {
+                        transform: rotate(45deg);
+                        top: 50px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .main {
+        &__body {
+            .coupons {
+                &__item {
+                    min-width: 252px;
+                    height: 130px;
+                }
+            }
+        }
+    }
+
+}
+
+@media (min-width:500px) and (max-width:1024px) {
+    .sidebar {
+        width: 100%;
+        max-width: 10.4rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        transition: .3s max-width linear;
+
+        &_active {
+            align-items: flex-start;
+            max-width: 24.6rem;
+
+            .nav__link {
+                font-size: 1.6rem !important;
+            }
+
+            .logo__text {
+                display: block;
+            }
+
+            .sidebar__head {
+                padding-left: 3.4rem;
+            }
+        }
+
+        &__head {
+            padding: 4.1rem 0 0 0;
+            // padding: 4.1rem 0 0 4.1rem;
+            margin-bottom: 5.5rem;
+            transition: .3s padding linear;
+        }
+
+        &__body {}
+
+        .nav {
+
+            &__burger {
+                &_active {
+                    left: 24.6rem;
+                }
+            }
+
+            &__list {}
+
+            &__item {
+
+                padding: 2.5rem 0 2.5rem 3.4rem;
+            }
+
+            &__link {
+                font-size: 0rem;
+                transition: .3s font-size linear;
+            }
+
+            &__icon {
+                margin-right: 4.5rem;
+            }
+        }
+    }
+
+    .logo {
+        &__icon {}
+
+        &__text {
+            display: none;
+        }
+    }
+
+    .main {
+        margin-left: 10.4rem;
+
+        &__title {
+            text-align: right;
+        }
+
+        &__body {
+            .coupons {
+
+                &__list {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        &__body {
+            padding: 2.7rem 2rem 10rem 2rem;
+
+            .coupons {
+
+                &__list {
+                    grid-template-columns: repeat(1, 1fr) !important;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .sidebar {
+        max-width: 1.2rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        transition: .3s max-width linear;
+
+        &_active {
+            align-items: flex-start;
+            max-width: 24.6rem;
+
+            .nav__link {
+                font-size: 1.6rem !important;
+            }
+
+
+            .logo__icon {
+                display: block;
+                width: 24px;
+                height: 24px;
+            }
+
+            .logo__text {
+                display: block;
+            }
+
+            .sidebar__head {
+                padding-left: 3.4rem;
+            }
+        }
+
+        &__head {
+            padding: 4.1rem 0 0 0;
+            // padding: 4.1rem 0 0 4.1rem;
+            margin-bottom: 5.5rem;
+            transition: .3s padding linear;
+        }
+
+        &__body {}
+
+        .nav {
+
+            &__burger {
+                left: 1.2rem;
+
+                &_active {
+                    left: 24.6rem;
+                }
+            }
+
+            &__list {}
+
+            &__item {
+                padding: 2.5rem 0 2.5rem 3.4rem;
+            }
+
+            &__link {
+                font-size: 0rem;
+                transition: .3s font-size linear;
+            }
+
+            &__icon {
+                display: none;
+                margin-right: 4.5rem;
+            }
+        }
+    }
+
+    .logo {
+        &__icon {
+            display: none;
+        }
+
+        &__text {
+            display: none;
+        }
+    }
+
+    .main {
+        margin-left: 1.2rem;
+
+        &__title {
+            text-align: right;
+        }
+    }
+}
+
+
+// </ВСЕ СТИЛИ>
